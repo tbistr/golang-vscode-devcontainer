@@ -1,17 +1,16 @@
 FROM mcr.microsoft.com/vscode/devcontainers/base:debian-11
 
-ARG GO_FILE=go1.18.4.linux-amd64.tar.gz
-
 # install fish terminal
 RUN apt-get update && apt-get install -y \
     fish \
     && rm -rf /var/lib/apt/lists/*
 
 # install golang
-RUN curl -fsSL -o /tmp/${GO_FILE} https://go.dev/dl/${GO_FILE} \
-    && tar -C /usr/local -xzf /tmp/${GO_FILE} \
-    && rm /tmp/${GO_FILE}
+ARG GO_VERSION=1.19
+RUN set -x \
+    && curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | tar -xz -C /usr/local
 ENV PATH $PATH:/usr/local/go/bin
+ENV PATH $PATH:/home/vscode/go/bin
 
 # install go tools (for golang.go extention)
 # cgo depends on gcc
@@ -19,6 +18,7 @@ RUN apt-get update && apt-get install -y \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 ENV GOPATH=/home/vscode/go
+USER vscode
 RUN    go install -v golang.org/x/tools/gopls@latest \
     && go install -v github.com/cweill/gotests/gotests@latest \
     && go install -v github.com/fatih/gomodifytags@latest \
