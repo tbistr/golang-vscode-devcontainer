@@ -1,5 +1,5 @@
 {
-    "name": "rust-vsode-devcontainer",
+    "name": "golang-vsode-devcontainer",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
