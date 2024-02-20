@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # install golang
-ARG GO_VERSION=1.20.1
+ARG GO_VERSION=1.22.0
 RUN set -x \
     && curl -fsSL "https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz" | tar -xz -C /usr/local
 ENV PATH $PATH:/usr/local/go/bin
