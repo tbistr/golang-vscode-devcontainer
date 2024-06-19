@@ -1,5 +1,5 @@
 {
-    "name": "golang-vsode-devcontainer",
+    "name": "golang-vsode-devcontainer1.22",
     "build": {
         "dockerfile": "Dockerfile",
         "args": {
