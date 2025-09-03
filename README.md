@@ -1,3 +1,3 @@
 # golang-vscode-devcontainer
 
-vscode devcontainer for golang.
+`go mod init <package-name>`

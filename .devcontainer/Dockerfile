@@ -1,13 +1,13 @@
-FROM mcr.microsoft.com/devcontainers/go:1-1.22-bookworm
+FROM mcr.microsoft.com/devcontainers/go:1-1.25-bookworm
 
 # install fish terminal
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     fish \
     && rm -rf /var/lib/apt/lists/*
 
 # install go tools (for golang.go extention)
 # cgo depends on gcc
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
     gcc \
     && rm -rf /var/lib/apt/lists/*
 ENV GOPATH=/home/vscode/go
